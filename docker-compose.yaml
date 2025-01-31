@@ -1,0 +1,29 @@
+version: '3.7'
+
+services: 
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - test-network
+
+  api-rocket:
+    build:
+      context: .
+    container_name: api-rocket
+    ports:
+      - "3001:3000"
+    depends_on:
+      - mysql
+    networks:
+      - test-network
+   
