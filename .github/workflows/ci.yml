@@ -28,11 +28,11 @@ jobs:
             id: tag
             run: |
               SHA=$(echo $GITHUB_SHA | head -c7)
-              echo "SHA: $SHA" >> $GITHUB_OUTPUT
+              echo "sha=$SHA"" >> $GITHUB_OUTPUT
 
 
           - name: Build docker image
-            run: docker build -t rocketseat-ci-api:${{steps.tag.outputs.SHA}} .
+            run: docker build -t rocketseat-ci-api:${{steps.tag.outputs.sha}} .
             
 
 
